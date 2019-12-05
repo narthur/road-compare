@@ -2,7 +2,7 @@
 
 Simple script to compare Beeminder roads
 
-# Usage
+## Usage
 
 ```bash
 chmod +x main.py
@@ -10,7 +10,7 @@ python3 -m pip install --user -r requirements.txt
 ./main.py https://www.beeminder.com/user/before.json https://www.beeminder.com/user/after.json
 ```
 
-# Results
+## Results
 
 ```bash
 $ ./main.py https://www.beeminder.com/user/before.json https://www.beeminder.com/user/after.json
@@ -21,7 +21,7 @@ $ ./main.py https://www.beeminder.com/user/before.json https://www.beeminder.com
 FAILED
 ```
 
-# Upgrade requirements
+## Upgrade requirements
 
 ```bash
 python3 -m pip install --upgrade -r requirements.txt

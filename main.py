@@ -5,6 +5,7 @@ import requests
 from pyminder.goal import Goal
 from natlibpy.factory import Factory
 import datetime
+import json
 
 
 class Main:
@@ -19,11 +20,11 @@ class Main:
             print('./main.py https://www.beeminder.com/user/before.json https://www.beeminder.com/user/after.json')
             exit()
 
-        before_url = sys.argv[1]
-        after_url = sys.argv[2]
+        before_address = sys.argv[1]
+        after_address = sys.argv[2]
 
-        before_goal: Goal = self._build_goal(before_url)
-        after_goal: Goal = self._build_goal(after_url)
+        before_goal: Goal = self._build_goal(before_address)
+        after_goal: Goal = self._build_goal(after_address)
 
         results = self._calculate_results(before_goal, after_goal)
 
@@ -39,10 +40,18 @@ class Main:
 
         return [(t, after_goal.get_road_val(t) >= before_goal.get_road_val(t)) for t in times]
 
-    def _build_goal(self, url) -> Goal:
-        data = requests.get(url).json()
+    def _build_goal(self, data_location) -> Goal:
+        data = self._get_goal_data(data_location)
 
         return self._factory.make(Goal, data=data)
+
+    @staticmethod
+    def _get_goal_data(location):
+        try:
+            with open(location) as json_file:
+                return json.load(json_file)
+        except FileNotFoundError:
+            return requests.get(location).json()
 
     def _print_ranges(self, results):
         for range_ in self._build_ranges(results):

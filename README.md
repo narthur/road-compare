@@ -2,12 +2,20 @@
 
 Simple script to compare Beeminder roads
 
-## Usage
+## Installation
 
 ```bash
 chmod +x main.py
 python3 -m pip install --user -r requirements.txt
+```
+
+## Usage
+
+Script accepts two data sources as arguments, which can be URLs and/or local file paths.
+
+```bash
 ./main.py https://www.beeminder.com/user/before.json https://www.beeminder.com/user/after.json
+./main.py before.json after.json
 ```
 
 ## Results

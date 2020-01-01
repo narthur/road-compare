@@ -18,6 +18,12 @@ Script accepts two data sources as arguments, which can be URLs and/or local fil
 ./main.py before.json after.json
 ```
 
+### Docker
+
+```bash
+docker-compose run app ./main.py before.json after.json
+```
+
 ## Results
 
 ```bash
